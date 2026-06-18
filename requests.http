@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:3333/api
+
+# IMPORTANTE: Após listar as categorias, substitua este valor pelo ID real de uma categoria existente
+@categoriaId = COLOQUE_O_ID_DA_CATEGORIA_AQUI
+
+# IMPORTANTE: Após criar o produto, substitua este valor pelo ID real do produto criado
+@produtoId = COLOQUE_O_ID_DO_PRODUTO_AQUI
+
+### 1️⃣ Listar produtos (Esperado: 200 OK, array)
+GET {{baseUrl}}/produtos
+
+### 2️⃣ Listar categorias (Esperado: 200 OK, 5 categorias)
+GET {{baseUrl}}/categorias
+
+### 3️⃣ Criar produto (Esperado: 201 Created)
+POST {{baseUrl}}/produtos
+Content-Type: application/json
+
+{
+  "nome": "Notebook",
+  "descricao": "Notebook Dell",
+  "preco": 4500,
+  "categoriaId": "{{categoriaId}}"
+}
+
+### 4️⃣ Buscar produto por ID (Esperado: 200 OK com Categoria inclusa)
+GET {{baseUrl}}/produtos/{{produtoId}}
+
+### 5️⃣ Atualizar produto (Esperado: 200 OK com dados atualizados)
+PUT {{baseUrl}}/produtos/{{produtoId}}
+Content-Type: application/json
+
+{
+  "nome": "Notebook Atualizado",
+  "descricao": "Novo modelo",
+  "preco": 4800
+}
+
+### 6️⃣ Deletar produto (Esperado: 204 No Content)
+DELETE {{baseUrl}}/produtos/{{produtoId}}
+
+### 7️⃣ ID inválido (Esperado: 404 Not Found)
+GET {{baseUrl}}/produtos/id-invalido
+
+### 8️⃣ Criar produto sem campos (Esperado: 400 Bad Request)
+POST {{baseUrl}}/produtos
+Content-Type: application/json
+
+{}

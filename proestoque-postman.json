@@ -1,0 +1,142 @@
+{
+	"info": {
+		"name": "ProEstoque API (Passo 6)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1️⃣ Listar produtos",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:3333/api/produtos",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos"]
+				}
+			}
+		},
+		{
+			"name": "2️⃣ Listar categorias",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:3333/api/categorias",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "categorias"]
+				}
+			}
+		},
+		{
+			"name": "3️⃣ Criar produto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Notebook\",\n  \"descricao\": \"Notebook Dell\",\n  \"preco\": 4500,\n  \"categoriaId\": \"COLOQUE_O_ID_DA_CATEGORIA_AQUI\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3333/api/produtos",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos"]
+				}
+			}
+		},
+		{
+			"name": "4️⃣ Buscar produto por ID",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:3333/api/produtos/COLOQUE_O_ID_DO_PRODUTO_AQUI",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos", "COLOQUE_O_ID_DO_PRODUTO_AQUI"]
+				}
+			}
+		},
+		{
+			"name": "5️⃣ Atualizar produto",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Notebook Atualizado\",\n  \"descricao\": \"Novo modelo\",\n  \"preco\": 4800\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3333/api/produtos/COLOQUE_O_ID_DO_PRODUTO_AQUI",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos", "COLOQUE_O_ID_DO_PRODUTO_AQUI"]
+				}
+			}
+		},
+		{
+			"name": "6️⃣ Deletar produto",
+			"request": {
+				"method": "DELETE",
+				"url": {
+					"raw": "http://localhost:3333/api/produtos/COLOQUE_O_ID_DO_PRODUTO_AQUI",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos", "COLOQUE_O_ID_DO_PRODUTO_AQUI"]
+				}
+			}
+		},
+		{
+			"name": "7️⃣ ID inválido",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:3333/api/produtos/id-invalido",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos", "id-invalido"]
+				}
+			}
+		},
+		{
+			"name": "8️⃣ Criar produto sem campos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://localhost:3333/api/produtos",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3333",
+					"path": ["api", "produtos"]
+				}
+			}
+		}
+	]
+}

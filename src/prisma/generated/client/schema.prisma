@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/prisma/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Categoria {
+  id       String    @id @default(uuid())
+  nome     String
+  produtos Produto[]
+}
+
+model Produto {
+  id          String    @id @default(uuid())
+  nome        String
+  descricao   String
+  preco       Float
+  categoriaId String
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  criadoEm    DateTime  @default(now())
+}
+
+model Usuario {
+  id       String   @id @default(uuid())
+  nome     String
+  email    String   @unique
+  senha    String
+  criadoEm DateTime @default(now())
+}
