@@ -29,10 +29,10 @@ export class ProdutoController {
   }
 
   async criar(req: Request, res: Response) {
-    const { nome, descricao, preco, categoriaId } = req.body
+    const { nome, descricao, preco, categoriaId, quantidade, codigoBarras } = req.body
 
-    if (!nome || !descricao || !preco || !categoriaId) {
-      throw new AppError('Todos os campos são obrigatórios')
+    if (!nome || preco === undefined || !categoriaId) {
+      throw new AppError('Os campos nome, preco e categoriaId são obrigatórios')
     }
 
     const categoriaExiste = await prisma.categoria.findUnique({
@@ -46,8 +46,10 @@ export class ProdutoController {
     const produto = await prisma.produto.create({
       data: {
         nome,
-        descricao,
+        descricao: descricao || '',
         preco,
+        quantidade: quantidade || 0,
+        codigoBarras: codigoBarras || null,
         categoriaId
       }
     })
@@ -57,7 +59,7 @@ export class ProdutoController {
 
   async atualizar(req: Request, res: Response) {
     const { id } = req.params
-    const { nome, descricao, preco, categoriaId } = req.body
+    const { nome, descricao, preco, categoriaId, quantidade, codigoBarras } = req.body
 
     const produtoExiste = await prisma.produto.findUnique({
       where: { id }
@@ -71,8 +73,10 @@ export class ProdutoController {
       where: { id },
       data: {
         nome,
-        descricao,
+        descricao: descricao || '',
         preco,
+        quantidade: quantidade !== undefined ? quantidade : undefined,
+        codigoBarras: codigoBarras !== undefined ? codigoBarras : undefined,
         categoriaId
       }
     })

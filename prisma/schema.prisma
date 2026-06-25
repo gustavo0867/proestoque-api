@@ -14,13 +14,15 @@ model Categoria {
 }
 
 model Produto {
-  id          String    @id @default(uuid())
-  nome        String
-  descricao   String
-  preco       Float
-  categoriaId String
-  categoria   Categoria @relation(fields: [categoriaId], references: [id])
-  criadoEm    DateTime  @default(now())
+  id           String    @id @default(uuid())
+  nome         String
+  descricao    String
+  preco        Float
+  quantidade   Int       @default(0)
+  codigoBarras String?
+  categoriaId  String
+  categoria    Categoria @relation(fields: [categoriaId], references: [id])
+  criadoEm     DateTime  @default(now())
 }
 
 model Usuario {
